@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 
-import { Country } from '../../types';
+import { Country } from './Assignment.types';
 import { useCountries } from '../../hooks/useCountries';
 
 export const Assignment = () => {
