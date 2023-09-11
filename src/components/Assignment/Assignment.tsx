@@ -1,28 +1,39 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
+import { useQuery, gql } from '@apollo/client';
 
-import { fetchData } from '../../api';
-import { Person } from './Assignment.types';
+import { Country } from './Assignment.types';
+
+const GET_COUNTRIES = gql`
+  query Countries {
+    countries {
+      capital
+      code
+      continent {
+        name
+      }
+      currency
+      languages {
+        name
+      }
+      native
+      name
+      phone
+    }
+  }
+`;
 
 export const Assignment = () => {
-  const [data, setData] = useState<Person[]>([]);
+  const { loading, error, data } = useQuery(GET_COUNTRIES);
+
   const [filterText, setFilterText] = useState<string>('');
   const [selected, setSelected] = useState<string>('');
-  const filteredData = useMemo<Person[]>(() => {
-    const filtered = data.filter((item) =>
-      item.name.toLowerCase().includes(filterText.toLowerCase())
-    );
+  const filteredData = useMemo<Country[]>(() => {
+    const filtered =
+      data?.countries?.filter((item: Country) =>
+        item.name.toLowerCase().includes(filterText.toLowerCase())
+      ) ?? [];
     return filtered;
   }, [data, filterText]);
-
-  useEffect(() => {
-    fetchData()
-      .then((results) => {
-        setData(results);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   const handleFilterTextChange = (e: React.FormEvent<HTMLInputElement>) => {
     setFilterText(e.currentTarget.value);
@@ -35,6 +46,10 @@ export const Assignment = () => {
       ? setSelected('')
       : setSelected(selectedItemText || '');
   };
+
+  if (loading) return <p>Loading...</p>;
+
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <section id="assignment">
