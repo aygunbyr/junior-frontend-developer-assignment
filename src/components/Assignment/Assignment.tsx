@@ -1,30 +1,10 @@
-import { useEffect, useState, useMemo } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useState, useMemo } from 'react';
 
-import { Country } from './Assignment.types';
-
-const GET_COUNTRIES = gql`
-  query Countries {
-    countries {
-      capital
-      code
-      continent {
-        name
-      }
-      currency
-      languages {
-        name
-      }
-      native
-      name
-      phone
-    }
-  }
-`;
+import { Country } from '../../types';
+import { useCountries } from '../../hooks/useCountries';
 
 export const Assignment = () => {
-  const { loading, error, data } = useQuery(GET_COUNTRIES);
-
+  const { loading, error, data } = useCountries();
   const [filterText, setFilterText] = useState<string>('');
   const [selected, setSelected] = useState<string>('');
   const filteredData = useMemo<Country[]>(() => {
