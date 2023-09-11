@@ -7,11 +7,22 @@ export const Assignment = () => {
   const { loading, error, data } = useCountries();
   const [filterText, setFilterText] = useState<string>('');
   const [selected, setSelected] = useState<string>('');
+
   const filteredData = useMemo<Country[]>(() => {
-    const filtered =
-      data?.countries?.filter((item: Country) =>
-        item.name.toLowerCase().includes(filterText.toLowerCase())
-      ) ?? [];
+    if (!data || !data.countries) {
+      return [];
+    }
+
+    const filterLowerCase = filterText.toLowerCase();
+
+    // TODO: change let => const
+    let filtered = data.countries.filter((item: Country) =>
+      item.name.toLowerCase().includes(filterLowerCase)
+    );
+
+    // TODO: remove this
+    filtered = filtered.slice(0, 10);
+
     return filtered;
   }, [data, filterText]);
 
