@@ -6,7 +6,7 @@
     "@apollo/client": "^3.8.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.50",
     "@types/react": "^18.2.21",
@@ -53,10 +53,7 @@
       }
     },
     "collectCoverageFrom": [
-      "**/src/*.tsx",
       "**/src/{components,layouts}/**/*.{ts,tsx}",
-      "!**/src/index.tsx",
-      "!**/src/**/*/.{types,stories,constants,test,spec}.{ts,tsx}",
       "!**/src/{components,layouts}/**/*.{types,stories,constants,test,spec}.{ts,tsx}"
     ]
   }

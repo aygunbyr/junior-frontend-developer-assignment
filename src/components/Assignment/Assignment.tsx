@@ -45,10 +45,12 @@ export const Assignment = () => {
   return (
     <section id="assignment">
       <form id="text-filter">
+        <label htmlFor="text-filter-input">Search...</label>
         <input
           type="text"
           id="text-filter-input"
           name="text-filter-input"
+          placeholder="Search..."
           value={filterText}
           onChange={handleFilterTextChange}
         />
@@ -61,6 +63,7 @@ export const Assignment = () => {
                 key={item.name}
                 className={selected === item.name ? 'selected' : ''}
                 onClick={toggleSelected}
+                data-testid={selected === item.name ? 'selected' : ''}
               >
                 {item.name}
               </li>
