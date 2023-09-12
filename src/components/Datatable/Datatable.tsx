@@ -84,7 +84,11 @@ export const Datatable = <T extends unknown>({
                   onClick={() => handleSelectItem(item)}
                 >
                   <td>
-                    <input type="checkbox" checked={selected} />
+                    <input
+                      type="checkbox"
+                      checked={selected}
+                      onChange={() => handleSelectItem(item)}
+                    />
                   </td>
                   {columns.map((column) => (
                     <td key={String(column.key)}>{String(item[column.key])}</td>

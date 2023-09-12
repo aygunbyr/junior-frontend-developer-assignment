@@ -1,10 +1,15 @@
 :root {
+  --emerald: #10b981;
+  --fuchsia: #d946ef;
   --gray: #6b7280;
+  --green: #22c55e;
   --indigo: #6366f1;
+  --lime: #84cc16;
   --orange: #f59e0b;
   --pink: #ec4899;
   --purple: #a855f7;
   --red: #ef4444;
+  --rose: #f43f5e;
   --sky: #0ea5e9;
   --soft-white: #f9fafb;
   --soft-black: #111827;
@@ -93,6 +98,7 @@
   max-width: 100%;
   background-color: var(--gray);
   color: var(--soft-white);
+  border-radius: 4px;
 }
 
 .datatable__form-per-page {
@@ -125,8 +131,47 @@
 }
 
 .datatable__selected {
-  background-color: var(--orange);
   color: var(--soft-white);
+}
+
+.datatable__table tbody tr:nth-child(1).datatable__selected {
+  background-color: var(--pink);
+}
+
+.datatable__table tbody tr:nth-child(2).datatable__selected {
+  background-color: var(--rose);
+}
+
+.datatable__table tbody tr:nth-child(3).datatable__selected {
+  background-color: var(--orange);
+}
+
+.datatable__table tbody tr:nth-child(4).datatable__selected {
+  background-color: var(--purple);
+}
+
+.datatable__table tbody tr:nth-child(5).datatable__selected {
+  background-color: var(--red);
+}
+
+.datatable__table tbody tr:nth-child(6).datatable__selected {
+  background-color: var(--sky);
+}
+
+.datatable__table tbody tr:nth-child(7).datatable__selected {
+  background-color: var(--lime);
+}
+
+.datatable__table tbody tr:nth-child(8).datatable__selected {
+  background-color: var(--emerald);
+}
+
+.datatable__table tbody tr:nth-child(9).datatable__selected {
+  background-color: var(--fuchsia);
+}
+
+.datatable__table tbody tr:nth-child(10).datatable__selected {
+  background-color: var(--green);
 }
 
 /* Table Footer - End */
