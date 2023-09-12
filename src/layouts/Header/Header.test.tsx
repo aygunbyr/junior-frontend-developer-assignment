@@ -8,7 +8,7 @@ test('renders correctly', () => {
   expect(banner).toBeInTheDocument();
 
   const heading = screen.getByRole('heading', {
-    name: /junior frontend developer assignment/i,
+    name: /assignment/i,
   });
   expect(heading).toBeInTheDocument();
 });

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root {
+  --gray: #6b7280;
   --indigo: #6366f1;
   --orange: #f59e0b;
   --pink: #ec4899;
@@ -8,12 +9,10 @@
   --red: #ef4444;
   --sky: #0ea5e9;
   --soft-white: #f9fafb;
-  --soft-white-transparent: rgba(248, 248, 248, 0.5);
   --soft-black: #111827;
-  --soft-black-transparent: rgba(17, 17, 17, 0.5);
 
-  --header-height: 100px;
-  --footer-height: 100px;
+  --header-height: 80px;
+  --footer-height: 80px;
 }
 
 * {
@@ -59,12 +58,12 @@ body {
 
 .header {
   height: var(--header-height);
-  background-color: var(--sky);
+  background-color: var(--gray);
   padding: 20px;
 }
 
 .header__app-title {
-  color: var(--red);
+  color: var(--sky);
   font-size: 2rem;
   line-height: 2.5rem;
 }
@@ -74,7 +73,7 @@ body {
 /* Footer - Start */
 
 .footer {
-  background-color: var(--orange);
+  background-color: var(--indigo);
   padding: 20px;
   font-size: 1.25rem;
   height: var(--footer-height);
