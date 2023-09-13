@@ -1,5 +1,7 @@
 # Junior Frontend Developer Assignment
 
+I have deployed this project on Vercel. Check out [Live Demo](https://junior-frontend-developer-assignment.vercel.app/)
+
 I have developed this project for Junior Frontend Developer Assignment.
 
 Apollo Client is used for fetching data from GraphQL API.
