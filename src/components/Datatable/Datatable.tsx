@@ -2,9 +2,14 @@ import { useMemo, useState } from 'react';
 
 import styles from './Datatable.module.css';
 import { DatatableProps } from './Datatable.types';
-import { compareTwoObjects, containsSearchText } from './utils';
+import {
+  comparator,
+  compareTwoObjects,
+  containsSearchText,
+  extractValuesFromSearchText,
+} from './utils';
 
-export const Datatable = <T extends unknown>({
+export const Datatable = <T extends {}>({
   columns,
   data,
 }: DatatableProps<T>) => {
@@ -12,15 +17,31 @@ export const Datatable = <T extends unknown>({
   const [searchText, setSearchText] = useState<string>('');
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [selectedItem, setSelectedItem] = useState<T | null>(null);
+  const [filterText, setFilterText] = useState('');
+  const [group, setGroup] = useState<keyof T | null>(null);
 
   const filteredData = useMemo(() => {
-    return data?.filter((item) => containsSearchText(item, searchText));
-  }, [data, searchText]);
+    const filtered = data
+      ?.filter((item) => containsSearchText(item, filterText))
+      .sort((a, b) => comparator<T>(a, b, group as keyof T));
+
+    if (filtered.length > 10) {
+      const tenthElement = filtered[9];
+      setSelectedItem(tenthElement);
+    } else {
+      const lastElement = filtered.slice(-1)[0];
+      setSelectedItem(lastElement);
+    }
+
+    return filtered;
+  }, [data, filterText, group]);
 
   const paginatedData = useMemo(() => {
     const startIndex = (currentPage - 1) * rowsPerPage;
     const endIndex = startIndex + rowsPerPage;
-    return filteredData?.slice(startIndex, endIndex);
+    const paginatedData = filteredData?.slice(startIndex, endIndex);
+
+    return paginatedData;
   }, [currentPage, rowsPerPage, filteredData]);
 
   const totalPages = useMemo(() => {
@@ -29,6 +50,21 @@ export const Datatable = <T extends unknown>({
 
   const handleSearchTextChange = (e: React.FormEvent<HTMLInputElement>) => {
     setSearchText(e.currentTarget.value);
+  };
+
+  const handleFilterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const { filterText: newFilterText, group: newGroup } =
+      extractValuesFromSearchText(searchText);
+
+    if (data && !data[0].hasOwnProperty(newGroup)) {
+      alert('Group name is invalid');
+      return;
+    }
+
+    setFilterText(newFilterText);
+    setGroup(newGroup as keyof T);
+    setCurrentPage(1);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -41,6 +77,7 @@ export const Datatable = <T extends unknown>({
 
   const handleChangeRowsPerPage = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setRowsPerPage(Number(e.currentTarget.value));
+    setCurrentPage(1);
   };
 
   const handleSelectItem = (item: T) => {
@@ -53,7 +90,7 @@ export const Datatable = <T extends unknown>({
     <section className={styles.datatable}>
       <form
         className={styles['datatable__filter-form']}
-        onSubmit={handleSubmit}
+        onSubmit={handleFilterSubmit}
       >
         <input
           className={styles['datatable__filter-form-input']}
@@ -62,6 +99,7 @@ export const Datatable = <T extends unknown>({
           value={searchText}
           onChange={handleSearchTextChange}
         />
+        <button className={styles['datatable__button']}>Filter</button>
       </form>
       <div className={styles['datatable__table-wrapper']}>
         <table className={styles['datatable__table']}>
@@ -113,6 +151,7 @@ export const Datatable = <T extends unknown>({
           >
             <option value="5">5</option>
             <option value="10">10</option>
+            <option value="20">20</option>
           </select>
         </form>
         <div className={styles['datatable__pagination']}>

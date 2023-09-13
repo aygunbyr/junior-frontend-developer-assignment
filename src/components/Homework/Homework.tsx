@@ -11,27 +11,27 @@ export const Homework = () => {
   let dictionary: ColumnProps<Country>[] = [
     {
       key: 'name',
-      label: 'Country Name',
+      label: 'name',
     },
     {
       key: 'capital',
-      label: 'Capital',
+      label: 'capital',
     },
     {
       key: 'code',
-      label: 'Code',
+      label: 'code',
     },
     {
       key: 'currency',
-      label: 'Currency',
+      label: 'currency',
     },
     {
       key: 'native',
-      label: 'Native',
+      label: 'native',
     },
     {
       key: 'phone',
-      label: 'Phone',
+      label: 'phone',
     },
   ];
 
