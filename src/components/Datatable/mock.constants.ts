@@ -1,3 +1,6 @@
+import { Country } from "../Assignment/Assignment.types";
+import { ColumnProps } from "./Datatable.types";
+
 export const mockData = {
   countries: [
     {
@@ -203,3 +206,30 @@ export const mockData = {
     },
   ],
 };
+
+export const mockColumns: ColumnProps<Country>[] = [
+  {
+    key: 'name',
+    label: 'name',
+  },
+  {
+    key: 'capital',
+    label: 'capital',
+  },
+  {
+    key: 'code',
+    label: 'code',
+  },
+  {
+    key: 'currency',
+    label: 'currency',
+  },
+  {
+    key: 'native',
+    label: 'native',
+  },
+  {
+    key: 'phone',
+    label: 'phone',
+  },
+];

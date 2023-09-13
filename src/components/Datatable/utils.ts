@@ -1,4 +1,4 @@
-const isStringAndContains = (value: any, searchText: string): boolean => {
+export const isStringAndContains = (value: any, searchText: string): boolean => {
   return typeof value === 'string' && value.toLowerCase().includes(searchText);
 };
 
@@ -44,3 +44,6 @@ export const comparator = <T,>(a: T, b: T, group: keyof T) => {
   }
   return 0;
 };
+
+
+

@@ -1,5 +1,5 @@
 import './App.css';
-import { Homework } from './components/Homework/Homework';
+import { Assignment } from './components/Assignment/Assignment';
 import { Footer } from './layouts/Footer';
 import { Header } from './layouts/Header';
 
@@ -8,8 +8,7 @@ function App() {
     <div className="container mx-auto">
       <Header />
       <main className="content">
-        {/* <Assignment /> */}
-        <Homework />
+        <Assignment />
       </main>
       <Footer />
     </div>

@@ -1,76 +1,47 @@
-import { useState, useMemo } from 'react';
-
-import { Country } from './Assignment.types';
 import { useCountries } from '../../hooks/useCountries';
+import { Country } from './Assignment.types';
+import { Datatable } from '../Datatable/Datatable';
+import { ColumnProps } from '../Datatable/Datatable.types';
 
 export const Assignment = () => {
   const { loading, error, data } = useCountries();
-  const [filterText, setFilterText] = useState<string>('');
-  const [selected, setSelected] = useState<string>('');
 
-  const filteredData = useMemo<Country[]>(() => {
-    if (!data || !data.countries) {
-      return [];
-    }
+  const countryData: Country[] = data?.countries;
 
-    const filterLowerCase = filterText.toLowerCase();
-
-    // TODO: change let => const
-    let filtered = data.countries.filter((item: Country) =>
-      item.name.toLowerCase().includes(filterLowerCase)
-    );
-
-    // TODO: remove this
-    filtered = filtered.slice(0, 10);
-
-    return filtered;
-  }, [data, filterText]);
-
-  const handleFilterTextChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setFilterText(e.currentTarget.value);
-  };
-
-  const toggleSelected = (e: React.SyntheticEvent) => {
-    const selectedItemText = e.currentTarget.textContent;
-
-    selected === selectedItemText
-      ? setSelected('')
-      : setSelected(selectedItemText || '');
-  };
+  const dictionary: ColumnProps<Country>[] = [
+    {
+      key: 'name',
+      label: 'name',
+    },
+    {
+      key: 'capital',
+      label: 'capital',
+    },
+    {
+      key: 'code',
+      label: 'code',
+    },
+    {
+      key: 'currency',
+      label: 'currency',
+    },
+    {
+      key: 'native',
+      label: 'native',
+    },
+    {
+      key: 'phone',
+      label: 'phone',
+    },
+  ];
 
   if (loading) return <p>Loading...</p>;
 
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
-    <section id="assignment">
-      <form id="text-filter">
-        <label htmlFor="text-filter-input">Search...</label>
-        <input
-          type="text"
-          id="text-filter-input"
-          name="text-filter-input"
-          placeholder="Search..."
-          value={filterText}
-          onChange={handleFilterTextChange}
-        />
-      </form>
-      <div className="items">
-        <ul>
-          {filteredData.map((item) => {
-            return (
-              <li
-                key={item.name}
-                className={selected === item.name ? 'selected' : ''}
-                onClick={toggleSelected}
-                data-testid={selected === item.name ? 'selected' : ''}
-              >
-                {item.name}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </section>
+    <>
+      <Datatable columns={dictionary} data={countryData} />
+    </>
   );
 };

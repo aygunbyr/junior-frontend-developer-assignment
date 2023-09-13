@@ -118,6 +118,7 @@ export const Datatable = <T extends {}>({
               return (
                 <tr
                   className={selected ? styles['datatable__selected'] : ''}
+                  data-testid={selected ? 'selected' : 'not-selected'}
                   key={index}
                   onClick={() => handleSelectItem(item)}
                 >
