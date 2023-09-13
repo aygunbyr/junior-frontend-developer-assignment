@@ -8,6 +8,6 @@ test('renders correctly', () => {
   const footer = screen.getByRole('contentinfo');
   expect(footer).toBeInTheDocument();
 
-  const footerText = screen.getByText(/footer/i);
+  const footerText = screen.getByText(/created by/i);
   expect(footerText).toBeInTheDocument();
 });

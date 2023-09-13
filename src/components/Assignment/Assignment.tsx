@@ -6,8 +6,6 @@ import { ColumnProps } from '../Datatable/Datatable.types';
 export const Assignment = () => {
   const { loading, error, data } = useCountries();
 
-  const countryData: Country[] = data?.countries;
-
   const dictionary: ColumnProps<Country>[] = [
     {
       key: 'name',
@@ -41,7 +39,7 @@ export const Assignment = () => {
 
   return (
     <>
-      <Datatable columns={dictionary} data={countryData} />
+      <Datatable columns={dictionary} data={data.countries} />
     </>
   );
 };

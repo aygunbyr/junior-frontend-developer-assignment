@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
     <footer className="footer">
-      <p>Footer</p>
+      <p>Created by Aygün Bayır</p>
     </footer>
   );
 };

@@ -99,7 +99,12 @@ export const Datatable = <T extends {}>({
           value={searchText}
           onChange={handleSearchTextChange}
         />
-        <button className={styles['datatable__button']}>Filter</button>
+        <button
+          className={styles['datatable__button']}
+          data-testid="filter-submit"
+        >
+          Filter
+        </button>
       </form>
       <div className={styles['datatable__table-wrapper']}>
         <table className={styles['datatable__table']}>
@@ -143,7 +148,7 @@ export const Datatable = <T extends {}>({
           className={styles['datatable__form-per-page']}
           onSubmit={handleSubmit}
         >
-          <label htmlFor="row-per-page">Row per page:</label>
+          <label htmlFor="row-per-page">Rows per page:</label>
           <select
             name="row-per-page"
             id="row-per-page"
@@ -163,7 +168,7 @@ export const Datatable = <T extends {}>({
           >
             Previous
           </button>
-          {currentPage}
+          <span data-testid="page-number">{currentPage}</span>
           <button
             className={styles['datatable__button']}
             disabled={currentPage === totalPages}
