@@ -99,12 +99,7 @@ export const Datatable = <T extends {}>({
           value={searchText}
           onChange={handleSearchTextChange}
         />
-        <button
-          className={styles['datatable__button']}
-          data-testid="filter-submit"
-        >
-          Filter
-        </button>
+        <button className={styles['datatable__button']}>Filter</button>
       </form>
       <div className={styles['datatable__table-wrapper']}>
         <table className={styles['datatable__table']}>
