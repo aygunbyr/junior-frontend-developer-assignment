@@ -1,11 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
-import userEvent from '@testing-library/user-event';
 
 import { GET_COUNTRIES } from '../../hooks/useCountries';
-import { mockColumns, mockData } from '../Datatable/mock.constants';
-
+import { mockData } from '../Datatable/mock.constants';
 import { Assignment } from './Assignment';
 
 describe('Assignment', () => {
