@@ -10,6 +10,12 @@ Apollo Client is used for fetching data from GraphQL API.
 
 I wrote down tests using the React Testing Library, Jest and MockedProvider from Apollo Client.
 
+You can search countries and group them using given format:
+
+```
+search:turk group:capital
+```
+
 ## Getting Started
 
 Clone this repository
